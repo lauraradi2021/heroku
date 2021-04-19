@@ -24,7 +24,7 @@
            </div>
          
             <div id="hide-me">
-                <br><h2> RESPEUSTAS </h2></br>
+                <br><h2> RESPUESTAS </h2></br>
                 <div id="id02"></div>
             </div>
         </form>
@@ -83,7 +83,7 @@ function myFunction2(response2) {
     out1 += "<tr><td>" + 
     arr1[i1].id +
     "</td><td>" +
-    arr1[i1].question +
+    arr1[i1].answer +
     "</td></tr>";
   }
   
