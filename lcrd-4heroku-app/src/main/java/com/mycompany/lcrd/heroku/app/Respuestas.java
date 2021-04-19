@@ -23,6 +23,7 @@ import javax.servlet.http.HttpServletResponse;
  *
  * @author laura
  */
+
 @WebServlet(urlPatterns = {"/respuestas"})
 public class Respuestas extends HttpServlet {
 
@@ -87,6 +88,11 @@ public class Respuestas extends HttpServlet {
     public String getServletInfo() {
         return "Short description";
     }// </editor-fold>
+    
+     private void setAccessControlHeaders(HttpServletResponse resp) {
+      resp.setHeader("Access-Control-Allow-Origin", "http://lcrd4unisabana.herokuapp.com/respuestas");
+      resp.setHeader("Access-Control-Allow-Methods", "GET");
+  }
 
 }
 
