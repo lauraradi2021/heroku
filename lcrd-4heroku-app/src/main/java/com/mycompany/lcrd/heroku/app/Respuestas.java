@@ -103,7 +103,7 @@ public class Respuestas extends HttpServlet {
       response.setStatus(HttpServletResponse.SC_OK);
   }
      private void setAccessControlHeaders(HttpServletResponse response) {
-      response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080/lcrd-4heroku-app");
+      response.setHeader("Access-Control-Allow-Origin", "http://lcrd4unisabana.herokuapp.com");
       response.setHeader("Access-Control-Allow-Methods", "GET");
   }
 

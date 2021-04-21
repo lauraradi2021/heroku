@@ -65,7 +65,7 @@ function myFunction(response) {
 };
 
 var xmlhttp1 = new XMLHttpRequest();
-var url2 ="http://localhost:25001/lcrd-4heroku-app/respuestas";
+var url2 ="http://lcrd4unisabana.herokuapp.com/respuestas";
 
 xmlhttp1.onreadystatechange=function() {
   if (this.readyState == 4 && this.status == 200) {
