@@ -19,6 +19,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+
 /**
  *
  * @author laura
@@ -26,7 +27,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(urlPatterns = {"/respuestas"})
 public class Respuestas extends HttpServlet {
-
+      ArrayList<ParcialRes> lres ;
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
      * methods.
@@ -38,15 +39,11 @@ public class Respuestas extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
         try (PrintWriter out = response.getWriter()) {
-            out.println("[{\"id\":1,\"answer\":\"1. Se hace una prueba para ver que falla\n" +
-            "2. Se hace un código básico para que la prueba pase\n" +
-            "3. Se refactoriza ese código básico\"}\n" +
-            ",{\"id\":2,\"answer\":\"get, post, put y delete\"}\n" +
-            ",{\"id\":3,\"answer\":\"AJAX y XML\"}\n" +
-            ",{\"id\":4,\"answer\":\"Es una función que pasa a otra función como argumento\"}\n" +
-            ",{\"id\":5,\"answer\":\"Como registra los cambios de forma local y push actualiza remotamente\"}]");
+            response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+            out.println("{\"id\":3,\"answer\":\"AJAX y XML\"}");
+            out.flush();
         }
     }
 
@@ -62,7 +59,17 @@ public class Respuestas extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        processRequest(request, response);
+        Gson gson = new Gson();
+        DatosComando datos = new DatosComando();
+        lres = datos.LeerResp();
+        String Rp = gson.toJson(lres);
+       /* processRequest(request, response);*/
+        setAccessControlHeaders(response);
+        PrintWriter out = response.getWriter();
+      response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        out.print(Rp);
+        out.flush();   
     }
 
     /**
@@ -89,10 +96,18 @@ public class Respuestas extends HttpServlet {
         return "Short description";
     }// </editor-fold>
     
-     private void setAccessControlHeaders(HttpServletResponse resp) {
-      resp.setHeader("Access-Control-Allow-Origin", "http://lcrd4unisabana.herokuapp.com/respuestas");
-      resp.setHeader("Access-Control-Allow-Methods", "GET");
+     @Override
+  protected void doOptions(HttpServletRequest req, HttpServletResponse response)
+          throws ServletException, IOException {
+      setAccessControlHeaders(response);
+      response.setStatus(HttpServletResponse.SC_OK);
   }
+     private void setAccessControlHeaders(HttpServletResponse response) {
+      response.setHeader("Access-Control-Allow-Origin", "http://localhost:8080/lcrd-4heroku-app");
+      response.setHeader("Access-Control-Allow-Methods", "GET");
+  }
+
+   
 
 }
 

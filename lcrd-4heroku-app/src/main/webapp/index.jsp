@@ -23,7 +23,7 @@
             <div id="id01"></div>
            </div>
          
-            <div id="hide-me">
+            <div>
                 <br><h2> RESPUESTAS </h2></br>
                 <div id="id02"></div>
             </div>
@@ -62,10 +62,10 @@ function myFunction(response) {
   out += "</table>";
   document.getElementById("id01").innerHTML = out;
    
-}
+};
 
 var xmlhttp1 = new XMLHttpRequest();
-var url2 ="http://lcrd4unisabana.herokuapp.com/respuestas";
+var url2 ="http://localhost:25001/lcrd-4heroku-app/respuestas";
 
 xmlhttp1.onreadystatechange=function() {
   if (this.readyState == 4 && this.status == 200) {
@@ -76,14 +76,14 @@ xmlhttp1.open("GET", url2, true);
 xmlhttp1.send();
 function myFunction2(response2) {
   var arr1 = JSON.parse(response2);
-  var i1;
+  var i1=0;
   var out1 = "<table>";
 
   for(i1 = 0; i1 < arr1.length; i1++) {
     out1 += "<tr><td>" + 
     arr1[i1].id +
     "</td><td>" +
-    arr1[i1].answer +
+    arr1[i1].resp +
     "</td></tr>";
   }
   
@@ -92,30 +92,8 @@ function myFunction2(response2) {
   
     
 }
+;
 
-$('#displayNone').click(function(e) {
-  
-  // Resetear, por si acaso has estado jugando con la otra propiedad
-  $('#hide-me').css('visibility', 'visible');
-  
-  if( $('#hide-me').is(":visible") ) {
-    $('#hide-me').css('display', 'none'); 
-  } else {
-    $('#hide-me').css('display', 'block');
-  }
-});
-
-$('#visibilityHidden').click(function(e) {
-  
-  // Resetear, por si acaso has estado jugando con la otra propiedad
-  $('#hide-me').css('display', 'block');
-  
-  if( $('#hide-me').css('visibility') != 'hidden' ) {
-    $('#hide-me').css('visibility', 'hidden');
-  } else {
-    $('#hide-me').css('visibility', 'visible');
-  }
-});
 </script>
 
 </body>

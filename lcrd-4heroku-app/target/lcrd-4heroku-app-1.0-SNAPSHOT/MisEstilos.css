@@ -1,17 +1,17 @@
 body{
     width: 900px;
     margin: auto;
-    background-color: azure;
+    background-color: white;
     border: double;
    
 }
 h1{
-    color: blue;
+    color: white;
     margin: auto;
     align-self: center;
 }
 h2{
-    color: blue;
+    color: white;
     margin: auto;
     align-self: center;
 }
